@@ -1,7 +1,7 @@
 #include <iostream>
 #include "IntArray.h"
 
-IntArray::IntArray(int length) : m_length(length) {    //создание контейнера
+IntArray::IntArray(int length) : m_length(length) {    //СЃРѕР·РґР°РЅРёРµ РєРѕРЅС‚РµР№РЅРµСЂР°
     if (length <= 0) {
         throw bad_length();
     }
@@ -14,20 +14,20 @@ IntArray::~IntArray() {
     delete[] m_data;
 }
 
-void IntArray::erase() {                        //очищение контейнера
+void IntArray::erase() {                        //РѕС‡РёС‰РµРЅРёРµ РєРѕРЅС‚РµР№РЅРµСЂР°
     delete[] m_data;
     m_data = nullptr;
     m_length = 0;
 }
 
-int& IntArray::operator[](const int& index) {   //доступ к любому элементу контейнера по индексу
+int& IntArray::operator[](const int& index) {   //РґРѕСЃС‚СѓРї Рє Р»СЋР±РѕРјСѓ СЌР»РµРјРµРЅС‚Сѓ РєРѕРЅС‚РµР№РЅРµСЂР° РїРѕ РёРЅРґРµРєСЃСѓ
     if (index <= 0 && index > m_length) {
         throw bad_range();
     }
     return m_data[index];
 }
 
-void IntArray::reallocate(int newLength) {      // изменение размера контейнера с очищением существующих элементов
+void IntArray::reallocate(int newLength) {      // РёР·РјРµРЅРµРЅРёРµ СЂР°Р·РјРµСЂР° РєРѕРЅС‚РµР№РЅРµСЂР° СЃ РѕС‡РёС‰РµРЅРёРµРј СЃСѓС‰РµСЃС‚РІСѓСЋС‰РёС… СЌР»РµРјРµРЅС‚РѕРІ
     if (newLength <= 0) {
         throw bad_length();
     }
@@ -37,11 +37,11 @@ void IntArray::reallocate(int newLength) {      // изменение размера контейнера 
             return;
         m_data = new int[newLength];
         m_length = newLength;
-        cout << "Размер массива изменен на: " << newLength << endl;
+        cout << "Р Р°Р·РјРµСЂ РјР°СЃСЃРёРІР° РёР·РјРµРЅРµРЅ РЅР°: " << newLength << endl;
     }
 }
 
-void IntArray::resize(int newLength) {          // изменение размера контейнера с сохранением существующих элементов
+void IntArray::resize(int newLength) {          // РёР·РјРµРЅРµРЅРёРµ СЂР°Р·РјРµСЂР° РєРѕРЅС‚РµР№РЅРµСЂР° СЃ СЃРѕС…СЂР°РЅРµРЅРёРµРј СЃСѓС‰РµСЃС‚РІСѓСЋС‰РёС… СЌР»РµРјРµРЅС‚РѕРІ
     if (newLength <= 0) {
         throw bad_length();
     }
@@ -64,30 +64,30 @@ void IntArray::resize(int newLength) {          // изменение размера контейнера 
     delete[] m_data;
     m_data = data;
     m_length = newLength;
-    cout << "Размер массива изменен на: " << newLength << endl;
+    cout << "Р Р°Р·РјРµСЂ РјР°СЃСЃРёРІР° РёР·РјРµРЅРµРЅ РЅР°: " << newLength << endl;
 }
 
-void IntArray::insertBefore(int value, int index) {      //вставка числа по индексу
+void IntArray::insertBefore(int value, int index) {      //РІСЃС‚Р°РІРєР° С‡РёСЃР»Р° РїРѕ РёРЅРґРµРєСЃСѓ
     if (index < 0 && index > m_length) {
         throw bad_range();
     }
 
     int* data { new int[m_length + 1] };
 
-    for (int before{ 0 }; before < index; ++before)      // Копирование элементов до индекса
+    for (int before{ 0 }; before < index; ++before)      // РљРѕРїРёСЂРѕРІР°РЅРёРµ СЌР»РµРјРµРЅС‚РѕРІ РґРѕ РёРЅРґРµРєСЃР°
         data[before] = m_data[before];   
     data[index] = value;
 
-    for (int after = index; after < m_length; ++after)  // Копирование элементов после индекса
+    for (int after = index; after < m_length; ++after)  // РљРѕРїРёСЂРѕРІР°РЅРёРµ СЌР»РµРјРµРЅС‚РѕРІ РїРѕСЃР»Рµ РёРЅРґРµРєСЃР°
         data[after + 1] = m_data[after];
 
     delete[] m_data;
     m_data = data;
     ++m_length;
-    cout << "Вставляем число " << value << " по индексу " << index << endl;
+    cout << "Р’СЃС‚Р°РІР»СЏРµРј С‡РёСЃР»Рѕ " << value << " РїРѕ РёРЅРґРµРєСЃСѓ " << index << endl;
 }
 
-void IntArray::remove(int index) {                        //удаление элемента из контейнера по индексу
+void IntArray::remove(int index) {                        //СѓРґР°Р»РµРЅРёРµ СЌР»РµРјРµРЅС‚Р° РёР· РєРѕРЅС‚РµР№РЅРµСЂР° РїРѕ РёРЅРґРµРєСЃСѓ
     if (index < 0 && index > m_length) {
         throw bad_range();
     }
@@ -107,35 +107,35 @@ void IntArray::remove(int index) {                        //удаление элемента из
         delete[] m_data;
         m_data = data;
         --m_length;
-        cout << "Удаляем число с индексом " << index << endl;
+        cout << "РЈРґР°Р»СЏРµРј С‡РёСЃР»Рѕ СЃ РёРЅРґРµРєСЃРѕРј " << index << endl;
     }
 }
 
-void IntArray::insertAtBegin(int value) {      //вставка элемента в начало
+void IntArray::insertAtBegin(int value) {      //РІСЃС‚Р°РІРєР° СЌР»РµРјРµРЅС‚Р° РІ РЅР°С‡Р°Р»Рѕ
     insertBefore(value, 0);
 }
 
-void IntArray::insertAtEnd(int value) {        //вставка элемента в конец
+void IntArray::insertAtEnd(int value) {        //РІСЃС‚Р°РІРєР° СЌР»РµРјРµРЅС‚Р° РІ РєРѕРЅРµС†
     insertBefore(value, m_length);
 }
 
-void IntArray::search(int value) {             //поиск элемента в контейнере
+void IntArray::search(int value) {             //РїРѕРёСЃРє СЌР»РµРјРµРЅС‚Р° РІ РєРѕРЅС‚РµР№РЅРµСЂРµ
     int h = 0;
     for (int before = 0; before < m_length; ++before) {
         if (m_data[before] == value) {
             h += 1;
-            cout << "Число " << value << " находится под индексом " << before << endl;
+            cout << "Р§РёСЃР»Рѕ " << value << " РЅР°С…РѕРґРёС‚СЃСЏ РїРѕРґ РёРЅРґРµРєСЃРѕРј " << before << endl;
         }
     }
-    if (h == 0) cout << "Число " << value << " нет в контейнере" << endl;
+    if (h == 0) cout << "Р§РёСЃР»Рѕ " << value << " РЅРµС‚ РІ РєРѕРЅС‚РµР№РЅРµСЂРµ" << endl;
 }
 
 int IntArray::getLength() const {
     return m_length;
 }
 
-void IntArray::printArray() {                   //выводим содержимое контейнера на консоль
-    cout << "Элементы массива: ";
+void IntArray::printArray() {                   //РІС‹РІРѕРґРёРј СЃРѕРґРµСЂР¶РёРјРѕРµ РєРѕРЅС‚РµР№РЅРµСЂР° РЅР° РєРѕРЅСЃРѕР»СЊ
+    cout << "Р­Р»РµРјРµРЅС‚С‹ РјР°СЃСЃРёРІР°: ";
     for (int i{ 0 }; i < m_length; ++i)
         cout << m_data[i] << " ";
     cout << "\n\n";
