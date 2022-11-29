@@ -29,14 +29,14 @@ public:
 class bad_range : public exception {
 public:
     virtual const char* what() const noexcept override {
-        return "ERROR: Выход за пределы массива!";
+        return "ERROR: Р’С‹С…РѕРґ Р·Р° РїСЂРµРґРµР»С‹ РјР°СЃСЃРёРІР°!";
     }
 };
 
 class bad_length : public exception {
 public:
     virtual const char* what() const noexcept override {
-        return "ERROR: Неверная длинна массива!";
+        return "ERROR: РќРµРІРµСЂРЅР°СЏ РґР»РёРЅРЅР° РјР°СЃСЃРёРІР°!";
     }
 };
 #endif
